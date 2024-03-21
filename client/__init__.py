@@ -1,7 +1,7 @@
 import socket
 import sys
 
-# from server.conf import HOST, PORT
+# TODO: from server.conf import HOST, PORT
 HOST: str = "0.0.0.0"
 PORT: int = 9000
 

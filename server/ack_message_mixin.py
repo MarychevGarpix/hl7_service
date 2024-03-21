@@ -45,7 +45,7 @@ class ACKMessageMixin:
         return m
 
     def _success_message(self) -> Message:
-        text: str = ','.join([f'{key}:{value}' for key, value in STRUCTURE_DATA.items()]) + '\n'
+        text: str = ','.join([f'{key}:{value}' for key, value in STRUCTURE_DATA.items()])
 
         m = Message(self.NAME)
         m.msh.msh_9 = 'U09'  # ESR/ACK - Automated equipment status request

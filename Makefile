@@ -1,4 +1,4 @@
-.PHONY: activate_venv run_server
+.PHONY: activate_venv run_server run_client run
 
 # To ensure the venv exists, each of the recipes is depending on the $(VENV) target,
 # which ensures we always have an up-to-date venv installed.

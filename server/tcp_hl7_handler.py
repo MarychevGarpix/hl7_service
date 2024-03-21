@@ -1,7 +1,6 @@
 import os
 import socket
 import socketserver
-import sys
 import time
 from datetime import datetime
 from subprocess import check_output
@@ -21,14 +20,12 @@ class TCPHL7RequestHandler(socketserver.BaseRequestHandler, ACKMessageMixin):
         os.system(f'sudo fuser -k {PORT}/tcp')
 
     def setup(self):
+        print(f'{self.__class__.__name__}: The client {self.client_address} is connected successfully! Starting to send HL7 messages at {datetime.now()}\n')
         # Note: Avoid bind() exception: OSError: [Errno 48] Address already in use
-        self.request.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self.request.setblocking(False)
         self.server.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server.socket.setblocking(False)
 
     def handle(self) -> None:
-        print(f'{self.__class__.__name__}: The client {self.client_address} is connected successfully! Starting to send HL7 messages at {datetime.now()}\n')
         while True:
             try:
                 message = self.prepare_ack_message()
