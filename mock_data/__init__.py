@@ -1,0 +1,39 @@
+from mock_data.types import TStructureData
+
+STRUCTURE_DATA: TStructureData = {
+    'Texp': 0,
+    'EtCO2': 0.99,
+    'Pplat': 61,
+    'Pmean': 54,
+    'Volume': 2,
+    'Vt': 0.8,
+    'RRmand': 108,
+    'f': 72,
+    'FiO2': 96,
+    'RRspon': 133,
+    'PEEP': 62,
+    'PPS.C': 61.9,
+    'FIO2': 46,
+    'Ppeak': 33,
+    'Tinsp': 0.0
+}
+
+# TagID.TIDAL_VOLUME,
+# TagID.MINUTE_VOLUME,
+# TagID.POSITIVE_END_EXPIRATORY_PRESSURE_0409,
+# TagID.MEAN_PRESSURE,
+# TagID.PLATEAU_PRESSURE,
+# TagID.PATIENT_PRESSURE_FILTERED_10_HZ,
+# TagID.INSPIRATORY_TIME,
+# TagID.EXPIRATORY_TIME,
+# TagID.PPS_COMPLIANCE,
+# TagID.REAL_TIME_FIO2_FILTERED_2_HZ,
+# TagID.RESPIRATORY_RATE_TOTAL,
+# TagID.RESPIRATORY_RATE_MANDATORY,
+# TagID.RESPIRATORY_RATE_SPONTANEOUS,
+# CapnographTagID.END_TIDAL_CO2,
+# TagID.PATIENT_VOLUME,
+# TagID.OXYGEN_FLOW_SENSOR_VALUE,
+# TagID.AIR_FLOW_SENSOR_VALUE,
+# TagID.PERCENTAGE_O2,
+# TagID.AIR_FLOW_FILTERED_10_HZ
