@@ -4,6 +4,7 @@
 Сервис так же позволяет запускать `TCPHL7-клиент`'а, который подключается к серверу и получает `HL7` сообщения.
 Вывод сообщений можно увидеть из браузера, если будет выставлен флаг `SHOW_RESULT_TO_BROWSER` в `True`.
 
+![](demo_video.gif)
 
 __Принцип работы:__
 
@@ -21,7 +22,7 @@ Pmean                = Pmean      = MEAN_PRESSURE
 Pplat                = Pplat      = PLATEAU_PRESSURE
 Ppeak                = Ppeak      = PEAK_INSPIRATORY_PRESSURE  # old value - PATIENT_VOLUME
 Отношение вдох:выдох = Tinsp|Texp = INSPIRATORY_TIME|EXPIRATORY_TIME
-Compliance           = PPS.C      = PPS_COMPLIANCE
+Compliance           = CDyn       = NoTag.CDyn       # old: PPS_COMPLIANCE
 FiO2 (%)             = FiO2 (%)   = REAL_TIME_FIO2_FILTERED_2_HZ
 ЧД общая             = RRtotal    = RESPIRATORY_RATE_TOTAL
 ЧД мех               = RRmand     =  RESPIRATORY_RATE_MANDATORY
@@ -44,7 +45,7 @@ MSA|AA|Texp:0,EtCO2:0.99,Pplat:61,Pmean:54,Volume:2,Vt:0.8,RRmand:108,f:72,FiO2:
 ## Быстрый старт
 
 1. В первой консоли ввести `make run_server`
-2. В второй консоли ввести `make run_client`
+2. Во второй консоли ввести `make run_client`
 3. Вы должны получать `HL7` сообщения в реальном времени.
 
 

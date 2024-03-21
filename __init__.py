@@ -3,8 +3,6 @@ from server import run_server, TCPHL7RequestHandler
 
 
 if __name__ == "__main__":
-    # TCPHL7RequestHandler.close_port()
-    #
     try:
         run_server()
     except Exception as e:
