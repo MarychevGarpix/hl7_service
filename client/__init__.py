@@ -1,9 +1,7 @@
 import socket
 import sys
 
-# TODO: from server.conf import HOST, PORT
-HOST: str = "0.0.0.0"
-PORT: int = 9000
+from server.conf import HOST, PORT
 
 
 def run_client():

@@ -1,3 +1,5 @@
+import random
+
 from hl7apy.core import Message, Segment
 
 from mock_data import STRUCTURE_DATA
@@ -45,7 +47,7 @@ class ACKMessageMixin:
         return m
 
     def _success_message(self) -> Message:
-        text: str = ','.join([f'{key}:{value}' for key, value in STRUCTURE_DATA.items()])
+        text: str = ','.join([f'{abbr}:{random.randint(0, 300)}' for abbr in STRUCTURE_DATA.keys()])
 
         m = Message(self.NAME)
         m.msh.msh_9 = 'U09'  # ESR/ACK - Automated equipment status request
