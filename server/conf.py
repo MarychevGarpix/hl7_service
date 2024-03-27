@@ -1,3 +1,4 @@
+SERVICE_NAME: str = 'HL7 Service'
 HOST: str = "0.0.0.0"
 PORT: int = 9000
 TIME_REPEAT_SENDING: int = 1             # seconds

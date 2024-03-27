@@ -1,3 +1,3 @@
-from typing import Dict, Union
+from typing import Dict
 
-TStructureData = Dict[str, Union[int, float, str]]
+TStructureData = Dict[str, str]

@@ -5,7 +5,6 @@ import time
 from datetime import datetime
 from subprocess import check_output
 
-# from .ack_message_mixin import ACKMessageMixin
 from .oru_r01_message_mixin import ORUR01MessageMixin
 from .conf import TIME_REPEAT_SENDING, PORT
 
@@ -24,12 +23,12 @@ class TCPHL7RequestHandler(socketserver.BaseRequestHandler, ORUR01MessageMixin):
         print(f'{self.__class__.__name__}: The client {self.client_address} is connected successfully! Starting to send HL7 messages at {datetime.now()}\n')
         # Note: Avoid bind() exception: OSError: [Errno 48] Address already in use
         # self.server.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        # self.server.socket.setblocking(False)
+        # self.server.socket.setblocking(True)
 
     def handle(self) -> None:
         while True:
             try:
-                message = self.prepare_ack_message()
+                message = self.prepare_message()
                 self.request.sendall(message)
                 time.sleep(TIME_REPEAT_SENDING)
             except (Exception, BrokenPipeError) as e:

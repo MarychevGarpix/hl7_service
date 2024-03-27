@@ -16,7 +16,7 @@ class ACKMessageMixin:
     NAME = 'ACK'
     HTML_HEADER: bytes = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\n\r\n'.encode('utf-8')
 
-    def prepare_ack_message(self) -> bytes:
+    def prepare_message(self) -> bytes:
         try:
             m = self._success_message()
         except Exception as e:

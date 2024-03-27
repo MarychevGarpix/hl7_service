@@ -1,6 +1,6 @@
 # HL7 service
 
-Сервис позволяет запускать `TCPHL7-сервер`, который формирует фиктивные `HL7` сообщения типа `ACK`.
+Сервис позволяет запускать `TCPHL7-сервер`, который формирует фиктивные `HL7` сообщения типа `ORU^R01`, `ACK`.
 Сервис так же позволяет запускать `TCPHL7-клиент`'а, который подключается к серверу и получает `HL7` сообщения.
 Вывод сообщений можно увидеть из браузера, если будет выставлен флаг `SHOW_RESULT_TO_BROWSER` в `True`.
 
@@ -35,10 +35,30 @@ etCO2 (мм рт ст)     = EtCO2      = END_TIDAL_CO2 # Capnograph
 ```
 
 
-__Пример HL7 сообщения используя эти данные:__
+__Пример HL7  ACK-сообщения используя эти данные:__
 ```
 MSH|^~\&|||||20240321172826||U09|888|T|2.5||||AL
 MSA|AA|Texp:0,EtCO2:0.99,Pplat:61,Pmean:54,Volume:2,Vt:0.8,RRmand:108,f:72,FiO2:96,RRspon:133,PEEP:62,PPS.C:61.9,FIO2:46,Ppeak:33,Tinsp:0.0
+```
+__Пример HL7 ORU^R01-сообщения используя эти данные:__
+```
+MSH|^~\&|HL7 Service||||20240327122323||ORU^R01^ORU_R01|1433|P|2.5||||AL|||||
+PID|||1||Hospital||||||||||||||||||||||||||||||||||
+OBR||||L|||||||||||||||||||||||||||||||||||||||||||||
+OBX|1|NM|EXPIRATORY_TIME|Texp|269||||||F||||||||
+OBX|2|NM|INSPIRATORY_TIME|Tinsp|230||||||F||||||||
+OBX|3|NM|END_TIDAL_CO2|EtCO2|18||||||F||||||||
+OBX|4|NM|PLATEAU_PRESSURE|Pplat|201||||||F||||||||
+OBX|5|NM|MEAN_PRESSURE|Pmean|266||||||F||||||||
+OBX|6|NM|MINUTE_VOLUME|Volume|151||||||F||||||||
+OBX|7|NM|TIDAL_VOLUME|Vt|118||||||F||||||||
+OBX|8|NM|RESPIRATORY_RATE_MANDATORY|RRmand|74||||||F||||||||
+OBX|9|NM|?|f|3||||||F||||||||
+OBX|10|NM|REAL_TIME_FIO2_FILTERED_2_HZ|FiO2|201||||||F||||||||
+OBX|11|NM|RESPIRATORY_RATE_SPONTANEOUS|RRspon|259||||||F||||||||
+OBX|12|NM|POSITIVE_END_EXPIRATORY_PRESSURE_0409|PEEP|68||||||F||||||||
+OBX|13|NM|??|PPS.C|31||||||F||||||||
+OBX|14|NM|PATIENT_VOLUME|Ppeak|82||||||F||||||||
 ```
 
 
