@@ -6,6 +6,15 @@
 
 
 
+## Быстрый старт
+
+1. В первой консоли ввести `make run_server`
+2. Во второй консоли ввести `make run_client`
+3. Вы должны получать `HL7` сообщения в реальном времени.
+
+![](demo_video.gif)
+
+
 __Принцип работы:__
 
 1. Первое, нужно запустить `TCPHL7-сервер`: *в этом случае каждый интервал времени `TIME_REPEAT_SENDING` (секунд) будут формироваться данные со случайными значениями `TCPHL7-сервера`. `TCPHL7-сервер` сериализует эти данные в `HL7` сообения.*
@@ -15,23 +24,23 @@ __Принцип работы:__
 
 __Информация о фиктивных данных (Проверяется!):__
 ```
-Дыхательный объем    = Vt         = TIDAL_VOLUME
-Минутный объем       = Volume     = MINUTE_VOLUME
-PEEP                 = PEEP       = POSITIVE_END_EXPIRATORY_PRESSURE_0409
-Pmean                = Pmean      = MEAN_PRESSURE
-Pplat                = Pplat      = PLATEAU_PRESSURE
-Ppeak                = Ppeak      = PEAK_INSPIRATORY_PRESSURE  # old value - PATIENT_VOLUME
-Отношение вдох:выдох = Tinsp|Texp = INSPIRATORY_TIME|EXPIRATORY_TIME
-Compliance           = CDyn       = NoTag.CDyn       # old: PPS_COMPLIANCE
-FiO2 (%)             = FiO2 (%)   = REAL_TIME_FIO2_FILTERED_2_HZ
-ЧД общая             = RRtotal    = RESPIRATORY_RATE_TOTAL
-ЧД мех               = RRmand     =  RESPIRATORY_RATE_MANDATORY
-ЧД спонтанная        = RRspon     = RESPIRATORY_RATE_SPONTANEOUS
-etCO2 (мм рт ст)     = EtCO2      = END_TIDAL_CO2 # Capnograph
-Поток О2             = ...        = OXYGEN_FLOW_FILTERED... | OXYGEN_FLOW_SENSOR_VALUE  
-Поток воздуха        = ...        = AIR_FLOW_SENSOR_VALUE  |  AIR_FLOW_FILTERED_10_HZ 
-Расход O2            = ...        = PERCENTAGE_O2
-Расход воздуха       = ...        = STROKEWISE_FIO2 | AIR_FLOW_FILTERED_10_HZ
+Дыхательный объем    = Vt         = TIDAL_VOLUME 		        		- mL
+Минутный объем       = Volume     = MINUTE_VOLUME				        - mL/min
+PEEP                 = PEEP       = POSITIVE_END_EXPIRATORY_PRESSURE_0409               - mbar
+Pmean                = Pmean      = MEAN_PRESSURE 					- mbar
+Pplat                = Pplat      = PLATEAU_PRESSURE 					- mbar
+Ppeak                = Ppeak      = PEAK_INSPIRATORY_PRESSURE  # old value - PATIENT_VOLUME - mbar / mL
+Отношение вдох:выдох = Tinsp|Texp = INSPIRATORY_TIME|EXPIRATORY_TIME			- ms
+Compliance           = CDyn       = NoTag.CDyn       # old: PPS_COMPLIANCE		- mL/mbar / mL/mbar
+FiO2 (%)             = FiO2 (%)   = REAL_TIME_FIO2_FILTERED_2_HZ	        	- Vol%
+ЧД общая             = RRtotal    = RESPIRATORY_RATE_TOTAL				- bpm		
+ЧД мех               = RRmand     = RESPIRATORY_RATE_MANDATORY				- bpm
+ЧД спонтанная        = RRspon     = RESPIRATORY_RATE_SPONTANEOUS			- bpm
+etCO2 (мм рт ст)     = EtCO2      = END_TIDAL_CO2 # Capnograph				- %
+Поток О2             = ...        = OXYGEN_FLOW_FILTERED... | OXYGEN_FLOW_SENSOR_VALUE  - mL/min / mV
+Поток воздуха        = ...        = AIR_FLOW_SENSOR_VALUE  |  AIR_FLOW_FILTERED_10_HZ 	- mV / mL/min
+Расход O2            = ...        = PERCENTAGE_O2					- Vol%
+Расход воздуха       = ...        = STROKEWISE_FIO2 | AIR_FLOW_FILTERED_10_HZ		- Vol% / mL/min
 ```
 
 
@@ -42,33 +51,25 @@ MSA|AA|Texp:0,EtCO2:0.99,Pplat:61,Pmean:54,Volume:2,Vt:0.8,RRmand:108,f:72,FiO2:
 ```
 __Пример HL7 ORU^R01-сообщения используя эти данные:__
 ```
-MSH|^~\&|HL7 Service||||20240327122323||ORU^R01^ORU_R01|1433|P|2.5||||AL|||||
+MSH|^~\&|HL7 Service||||20240404092502||ORU^R01^ORU_R01|1433|P|2.5||||AL|||||
 PID|||1||Hospital||||||||||||||||||||||||||||||||||
-OBR||||L|||||||||||||||||||||||||||||||||||||||||||||
-OBX|1|NM|EXPIRATORY_TIME|Texp|269||||||F||||||||
-OBX|2|NM|INSPIRATORY_TIME|Tinsp|230||||||F||||||||
-OBX|3|NM|END_TIDAL_CO2|EtCO2|18||||||F||||||||
-OBX|4|NM|PLATEAU_PRESSURE|Pplat|201||||||F||||||||
-OBX|5|NM|MEAN_PRESSURE|Pmean|266||||||F||||||||
-OBX|6|NM|MINUTE_VOLUME|Volume|151||||||F||||||||
-OBX|7|NM|TIDAL_VOLUME|Vt|118||||||F||||||||
-OBX|8|NM|RESPIRATORY_RATE_MANDATORY|RRmand|74||||||F||||||||
-OBX|9|NM|?|f|3||||||F||||||||
-OBX|10|NM|REAL_TIME_FIO2_FILTERED_2_HZ|FiO2|201||||||F||||||||
-OBX|11|NM|RESPIRATORY_RATE_SPONTANEOUS|RRspon|259||||||F||||||||
-OBX|12|NM|POSITIVE_END_EXPIRATORY_PRESSURE_0409|PEEP|68||||||F||||||||
-OBX|13|NM|??|PPS.C|31||||||F||||||||
-OBX|14|NM|PATIENT_VOLUME|Ppeak|82||||||F||||||||
+OBR|1|ID|ii6780799425|L|||||||||||||||||||||||||||||||||||||||||||||
+OBX|1|NM|EXPIRATORY_TIME|Texp|106|ms|||||F||||||||
+OBX|2|NM|INSPIRATORY_TIME|Tinsp|67|ms|||||F||||||||
+OBX|3|NM|END_TIDAL_CO2|EtCO2|200|%|||||F||||||||
+OBX|4|NM|PLATEAU_PRESSURE|Pplat|297|mbar|||||F||||||||
+OBX|5|NM|MEAN_PRESSURE|Pmean|291|mbar|||||F||||||||
+OBX|6|NM|MINUTE_VOLUME|Volume|185|mL/min|||||F||||||||
+OBX|7|NM|TIDAL_VOLUME|Vt|161|mL|||||F||||||||
+OBX|8|NM|RESPIRATORY_RATE_MANDATORY|RRmand|147|bpm|||||F||||||||
+OBX|9|NM|?|f|273|bpm|||||F||||||||
+OBX|10|NM|REAL_TIME_FIO2_FILTERED_2_HZ|FiO2|37|Vol%|||||F||||||||
+OBX|11|NM|RESPIRATORY_RATE_SPONTANEOUS|RRspon|182|bpm|||||F||||||||
+OBX|12|NM|POSITIVE_END_EXPIRATORY_PRESSURE_0409|PEEP|13|mbar|||||F||||||||
+OBX|13|NM|??|PPS.C|9|mL/mbar|||||F||||||||
+OBX|14|NM|PATIENT_VOLUME|Ppeak|261|mL|||||F||||||||
 ```
 
-
-## Быстрый старт
-
-1. В первой консоли ввести `make run_server`
-2. Во второй консоли ввести `make run_client`
-3. Вы должны получать `HL7` сообщения в реальном времени.
-
-![](demo_video.gif)
 
 
 ## Установка
