@@ -27,6 +27,11 @@ $(BIN)/activate: requirements.txt
 	touch $(BIN)/activate
 
 
+install:
+	test -d $(VENV) || python3 -m venv venv || virtualenv -p python3 $(VENV)
+	${PYTHON} -m pip install -U pip
+	${PYTHON} -m pip install -r requirements.txt
+	touch $(BIN)/activate
 
 run_server: activate_venv
 	$(PY) run_server.py
