@@ -1,20 +1,20 @@
 from mock_data.types import TStructureData
 
 STRUCTURE_DATA: TStructureData = {
-    'EXPIRATORY_TIME': 'Texp',
-    'INSPIRATORY_TIME': 'Tinsp',
-    'END_TIDAL_CO2': 'EtCO2',
-    'PLATEAU_PRESSURE': 'Pplat',
-    'MEAN_PRESSURE': 'Pmean',
-    'MINUTE_VOLUME': 'Volume',
-    'TIDAL_VOLUME': 'Vt',
-    'RESPIRATORY_RATE_MANDATORY': 'RRmand',
-    '?': 'f',
-    'REAL_TIME_FIO2_FILTERED_2_HZ': 'FiO2',
-    'RESPIRATORY_RATE_SPONTANEOUS': 'RRspon',
-    'POSITIVE_END_EXPIRATORY_PRESSURE_0409': 'PEEP',
-    '??': 'PPS.C',
-    'PATIENT_VOLUME': 'Ppeak',
+    'EXPIRATORY_TIME': ('Texp', 'ms'),
+    'INSPIRATORY_TIME': ('Tinsp', 'ms'),
+    'END_TIDAL_CO2': ('EtCO2', '%'),
+    'PLATEAU_PRESSURE': ('Pplat', 'mbar'),
+    'MEAN_PRESSURE': ('Pmean', 'mbar'),
+    'MINUTE_VOLUME': ('Volume', 'mL/min'),
+    'TIDAL_VOLUME': ('Vt', 'mL'),
+    'RESPIRATORY_RATE_MANDATORY': ('RRmand', 'bpm'),
+    '?': ('f', 'bpm'),
+    'REAL_TIME_FIO2_FILTERED_2_HZ': ('FiO2', 'Vol%'),
+    'RESPIRATORY_RATE_SPONTANEOUS': ('RRspon', 'bpm'),
+    'POSITIVE_END_EXPIRATORY_PRESSURE_0409': ('PEEP', 'mbar'),
+    '??': ('PPS.C', 'mL/mbar'),
+    'PATIENT_VOLUME': ('Ppeak', 'mL')
 }
 
 

@@ -92,18 +92,22 @@ class ORUR01MessageMixin:
         m.ORU_R01_PATIENT_RESULT.ORU_R01_PATIENT.PID.pid_3 = "1"
         m.ORU_R01_PATIENT_RESULT.ORU_R01_PATIENT.PID.pid_5 = "Hospital"
         # OBR Segment -- Patient details -- Observation Request
+        m.ORU_R01_PATIENT_RESULT.ORU_R01_ORDER_OBSERVATION.OBR.obr_1 = "1"
+        m.ORU_R01_PATIENT_RESULT.ORU_R01_ORDER_OBSERVATION.OBR.obr_2 = "ID"
+        m.ORU_R01_PATIENT_RESULT.ORU_R01_ORDER_OBSERVATION.OBR.obr_3 = "ii6780799425"
         m.ORU_R01_PATIENT_RESULT.ORU_R01_ORDER_OBSERVATION.OBR.obr_4 = "L"
 
         # obx groups
         index = 1
-        for tag_name, abbr in STRUCTURE_DATA.items():
+        for tag_name, props in STRUCTURE_DATA.items():
             obx_group = Group(self.OBSERVATION_GROUP)
             obx = Segment('OBX')
             obx.obx_1 = str(index)
             obx.obx_2 = "NM"
             obx.obx_3 = tag_name
-            obx.obx_4 = abbr
+            obx.obx_4 = props[0]
             obx.obx_5 = str(random.randint(0, 300))
+            obx.obx_6 = props[1]
             obx.obx_11 = "F"
             obx_group.add(obx)
             m.ORU_R01_PATIENT_RESULT.ORU_R01_ORDER_OBSERVATION.add(obx_group)

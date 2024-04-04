@@ -1,3 +1,3 @@
 from typing import Dict
 
-TStructureData = Dict[str, str]
+TStructureData = Dict[str, tuple]
