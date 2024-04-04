@@ -21,7 +21,7 @@ endif
 activate_venv: $(BIN)/activate
 
 $(BIN)/activate: requirements.txt
-	test -d $(VENV) || virtualenv -p python3 $(VENV)
+	test -d $(VENV) || python3 -m venv venv || virtualenv -p python3 $(VENV)
 	${PYTHON} -m pip install -U pip
 	${PYTHON} -m pip install -r requirements.txt
 	touch $(BIN)/activate
